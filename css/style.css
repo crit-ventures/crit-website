@@ -1,0 +1,1094 @@
+/* ===== Reset & Base ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+}
+
+/* 스크롤은 바깥(브라우저 창) 하나만 사용한다.
+   - body의 height:100% + overflow-x:hidden 조합이 body를 별도 스크롤 컨테이너로
+     만들어 '안쪽 스크롤'이 생기고 그 위쪽이 고정 헤더에 가려지던 문제를 제거.
+   - 가로 스크롤 방지와 세로 스크롤은 모두 html에서 처리하고, 세로 스크롤바를
+     항상 표시(scroll + gutter stable)해 검색/필터로 목록이 줄어도 흔들리지 않게 함. */
+html {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+/* 첫 화면·메뉴 열림 상태에서는 스크롤바 숨김 (main.js가 토글) */
+html.hide-scroll {
+  overflow: hidden;
+}
+
+body {
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+  color: #fff;
+  background: #000;
+}
+
+a { text-decoration: none; color: inherit; }
+ul, li { list-style: none; }
+
+/* ===== Header ===== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 48px;
+  z-index: 110; /* 전체화면 메뉴(105)보다 위 — X 버튼이 항상 눌리도록 */
+}
+/* 서브 페이지(히어로 없음)용 솔리드 헤더 */
+.site-header.solid {
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(6px);
+}
+
+/* 크릿벤처스 로고 (스프라이트, 어두운 배경용 흰색 버전) */
+.logo {
+  width: 230px;
+  height: 20px;
+}
+.logo a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font: 0/0 a;
+  background-image: url("../assets/img/logo_sprite.png");
+  background-repeat: no-repeat;
+  background-size: 500px 500px;
+  background-position: 0 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+/* KOR / ENG 전환 */
+.lang {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+.lang li a {
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.3s;
+}
+.lang li.on a,
+.lang li a:hover {
+  color: #fff;
+}
+.lang li + li {
+  position: relative;
+  padding-left: 14px;
+}
+.lang li + li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 11px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* 햄버거 메뉴 버튼 (줄 3개) */
+.btn-menu {
+  position: relative;
+  width: 30px;
+  height: 22px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  z-index: 110;
+}
+.btn-menu span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  transition: transform 0.35s, opacity 0.35s, top 0.35s;
+}
+.btn-menu span:nth-child(1) { top: 0; }
+.btn-menu span:nth-child(2) { top: 10px; }
+.btn-menu span:nth-child(3) { top: 20px; }
+
+/* 열림 상태: X 모양 */
+body.menu-open .btn-menu span:nth-child(1) { top: 10px; transform: rotate(45deg); }
+body.menu-open .btn-menu span:nth-child(2) { opacity: 0; }
+body.menu-open .btn-menu span:nth-child(3) { top: 10px; transform: rotate(-45deg); }
+
+/* ===== 메인 히어로 (배경 슬라이드쇼) ===== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-slider,
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-slide {
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 1.6s ease, transform 7s ease;
+}
+.hero-slide.on {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hero-dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* 중앙 비전 문구 — 글자 크기는 한국투자파트너스(kipvc.co.kr)와 동일 */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+.hero-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 4em;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.hero-subtitle {
+  margin-top: 18px;
+  font-size: 1.4em;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== 전체화면 메뉴 (IMM 스타일: 사진 영역 4분할) ===== */
+.fullmenu {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  z-index: 105;
+  background: #000;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease, visibility 0.5s;
+}
+body.menu-open .fullmenu {
+  visibility: visible;
+  opacity: 1;
+}
+/* 메뉴가 열리면 첫 화면(히어로)은 완전히 감춤 */
+body.menu-open .hero {
+  visibility: hidden;
+}
+
+.fullmenu-item {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.6s ease, flex 0.5s ease;
+}
+body.menu-open .fullmenu-item {
+  transform: translateY(0);
+  opacity: 1;
+}
+body.menu-open .fullmenu-item:nth-child(1) { transition-delay: 0.05s; }
+body.menu-open .fullmenu-item:nth-child(2) { transition-delay: 0.15s; }
+body.menu-open .fullmenu-item:nth-child(3) { transition-delay: 0.25s; }
+body.menu-open .fullmenu-item:nth-child(4) { transition-delay: 0.35s; }
+
+/* 각 영역의 배경 사진 (첫 화면 슬라이드와 동일한 4장) */
+.fullmenu-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.65);
+  transition: filter 0.5s ease, transform 0.5s ease;
+}
+/* Portfolio 사진만 기존 밝기 유지 */
+.fm-portfolio .fullmenu-bg {
+  filter: brightness(0.5);
+}
+.fullmenu-item:hover .fullmenu-bg {
+  filter: brightness(1.5);
+  transform: scale(1.05);
+}
+.fm-portfolio:hover .fullmenu-bg {
+  filter: brightness(0.8);
+}
+.fullmenu-item + .fullmenu-item {
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.fullmenu-label {
+  position: relative;
+  font-family: "Montserrat", sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+.fullmenu-label::after {
+  content: "";
+  display: block;
+  margin-top: 10px;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  transition: width 0.4s ease;
+}
+.fullmenu-item:hover .fullmenu-label::after {
+  width: 100%;
+}
+
+/* ===== 서브 페이지(임시) ===== */
+.sub-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #111;
+}
+.sub-page h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.4em;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+/* ===== Team 페이지 ===== */
+.team-page {
+  min-height: 100vh;
+  background: #0d0d0d;
+  padding: 0;
+}
+/* 상단 배너 (다른 VC 사이트 팀 페이지처럼 배경 사진 위 타이틀) */
+.team-hero {
+  position: relative;
+  min-height: 460px;
+  display: flex;
+  align-items: flex-end;
+  padding: 140px 48px 60px;
+  background-size: cover;
+  background-position: center 30%;
+}
+.team-hero-dim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.35) 45%, rgba(13,13,13,0.95) 100%);
+}
+/* Portfolio를 제외한 페이지는 배너 사진이 더 밝게 보이도록 어두운 막을 옅게
+   (하단은 페이지 배경과 자연스럽게 이어지도록 그대로 어둡게 유지) */
+.about-page .team-hero-dim,
+.team-page .team-hero-dim,
+.fund-page .team-hero-dim {
+  background: linear-gradient(180deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.15) 45%, rgba(13,13,13,0.92) 100%);
+}
+/* Portfolio 배너는 조금 더 어둡게 */
+.portfolio-page .team-hero-dim {
+  background: linear-gradient(180deg, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.48) 45%, rgba(13,13,13,0.95) 100%);
+}
+.team-body {
+  padding: 80px 48px 120px;
+}
+.team-head {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.team-head .eyebrow {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  color: #e8380d;
+  text-transform: uppercase;
+}
+.team-head h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 3.4em;
+  font-weight: 600;
+  margin-top: 14px;
+  letter-spacing: 0.01em;
+}
+.team-head p {
+  margin-top: 18px;
+  font-size: 1.05em;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.6);
+  word-break: keep-all;
+}
+
+.team-section {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.team-section + .team-section {
+  margin-top: 90px;
+}
+.team-section-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5em;
+  font-weight: 500;
+  margin-bottom: 32px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px;
+}
+.member-card {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  color: inherit;
+  /* 그리드가 카드를 같은 행 높이로 늘리면서 버튼 내용이 세로 중앙
+     정렬되는 것을 방지 → 사진/이름이 항상 위쪽 기준으로 정렬되도록 */
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+}
+.member-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #1a1a1a;
+}
+/* 흑백/컬러 두 레이어로 분리 — 런타임 grayscale 필터를 쓰지 않아
+   브라우저가 고품질 다운스케일을 적용하므로 정지 상태에서 완전히 또렷하다.
+   기본은 흑백(.ph-bw)이 위에 보이고, 호버 시 흑백이 사라지며 컬러가 드러난다. */
+.member-photo img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.6s ease, opacity 0.45s ease;
+}
+.member-photo .ph-bw {
+  z-index: 1;
+}
+.member-card:hover .member-photo .ph-bw {
+  opacity: 0;
+}
+.member-card:hover .member-photo img {
+  transform: scale(1.05);
+}
+.member-photo::after {
+  content: "+";
+  position: absolute;
+  z-index: 2;
+  right: 14px;
+  bottom: 12px;
+  width: 30px;
+  height: 30px;
+  line-height: 28px;
+  text-align: center;
+  font-size: 20px;
+  color: #fff;
+  background: rgba(232, 56, 13, 0.9);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.member-card:hover .member-photo::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+.member-info {
+  margin-top: 16px;
+}
+.member-info .name {
+  display: block;
+  font-size: 1.15em;
+  font-weight: 600;
+}
+.member-info .position {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.9em;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.55);
+}
+.member-info .team {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.8em;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.38);
+}
+.member-detail { display: none; }
+
+/* 멤버 상세 모달 */
+.member-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.8);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.35s ease, visibility 0.35s;
+}
+body.modal-open .member-modal {
+  visibility: visible;
+  opacity: 1;
+}
+body.modal-open { overflow: hidden; }
+.member-modal-inner {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  max-height: 88vh;
+  overflow: hidden;
+  background: #151515;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+.member-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.member-modal-close::before,
+.member-modal-close::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+}
+.member-modal-close::before { transform: translate(-50%, -50%) rotate(45deg); }
+.member-modal-close::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+/* 좌측 사진 절반 / 우측 정보 절반 */
+.member-modal-body {
+  display: flex;
+  align-items: stretch;
+}
+.member-modal-body .m-left {
+  flex: 0 0 45%;
+  background: #1f1f1f;
+}
+.member-modal-body .m-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 460px;
+  object-fit: cover;
+  object-position: top center;
+}
+.member-modal-body .m-right {
+  flex: 1;
+  padding: 48px;
+  max-height: 88vh;
+  overflow-y: auto;
+}
+.member-modal-body .m-position {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.85em;
+  letter-spacing: 0.08em;
+  color: #e8380d;
+  text-transform: uppercase;
+}
+.member-modal-body .m-name {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2em;
+  font-weight: 600;
+  margin: 8px 0 0;
+}
+.member-modal-body .m-team {
+  margin: 6px 0 0;
+  font-size: 0.95em;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.5);
+}
+.member-modal-body dl { margin: 0; }
+.member-modal-body dt {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+.member-modal-body dd { margin: 0; }
+.member-modal-body dd ul li,
+.member-modal-body dd {
+  font-size: 0.98em;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ===== Fund 페이지 ===== */
+.fund-page {
+  min-height: 100vh;
+  background: #0d0d0d;
+}
+.fund-body {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 48px 120px;
+}
+.fund-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px;
+}
+/* 사진이 들어간 펀드 카드 */
+.fund-card {
+  overflow: hidden;
+  background: #151515;
+  border-radius: 12px;
+  transition: transform 0.35s ease;
+}
+.fund-card:hover { transform: translateY(-5px); }
+.fund-img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21 / 8;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+.fund-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(21, 21, 21, 0.85) 100%);
+  transition: background 0.35s ease;
+}
+.fund-card:hover .fund-img::after {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(21, 21, 21, 0.75) 100%);
+}
+.fund-info {
+  padding: 30px 32px 34px;
+}
+.fund-name {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.4em;
+  font-weight: 600;
+  line-height: 1.35;
+  word-break: keep-all;
+}
+.fund-meta {
+  display: flex;
+  gap: 44px;
+  margin: 22px 0 0;
+}
+.fund-meta dt {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.75em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 7px;
+}
+.fund-meta dd {
+  margin: 0;
+  font-size: 1.15em;
+  font-weight: 500;
+  color: #fff;
+}
+.fund-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 26px;
+}
+.fund-tags span {
+  padding: 6px 14px;
+  font-size: 0.85em;
+  border-radius: 999px;
+  background: rgba(232, 56, 13, 0.12);
+  border: 1px solid rgba(232, 56, 13, 0.3);
+  color: #ff7a5c;
+}
+
+@media (max-width: 900px) {
+  .fund-body { padding: 56px 22px 80px; }
+  .fund-grid { grid-template-columns: 1fr; }
+  .fund-info { padding: 24px 22px 28px; }
+}
+
+/* ===== About 페이지 ===== */
+.about-page {
+  min-height: 100vh;
+  background: #0d0d0d;
+}
+.about-body {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px 48px 40px;
+}
+.about-section {
+  padding: 72px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.about-section:first-child { border-top: 0; }
+
+.about-eyebrow {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #e8380d;
+}
+.about-vision-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 3.2em;
+  font-weight: 600;
+  margin-top: 16px;
+  letter-spacing: 0.01em;
+}
+.about-vision-sub {
+  margin-top: 18px;
+  font-size: 1.15em;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.65);
+  word-break: keep-all;
+}
+.about-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.9em;
+  font-weight: 600;
+  margin-top: 14px;
+}
+.about-lead {
+  margin-top: 22px;
+  font-size: 1.3em;
+  font-weight: 300;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* 숫자 카운트업 통계 */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 40px;
+}
+.stat-card {
+  padding: 30px 20px;
+  text-align: center;
+}
+.stat-value {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 3.3em;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.1;
+}
+.stat-plus {
+  font-weight: 600;
+  color: #fff;
+}
+.stat-unit {
+  margin-left: 8px;
+  font-size: 0.36em;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+}
+.stat-label {
+  margin-top: 14px;
+  font-size: 0.95em;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* 투자 분야 */
+.focus-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 26px;
+}
+.focus-chip {
+  padding: 11px 22px;
+  font-size: 0.98em;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.85);
+}
+.focus-stage {
+  margin-top: 30px;
+  padding: 22px 26px;
+  background: #151515;
+  border-left: 3px solid #e8380d;
+  border-radius: 6px;
+  font-size: 1.08em;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.85);
+  word-break: keep-all;
+}
+.focus-stage strong { font-weight: 600; color: #fff; }
+
+/* Contact (페이지 하단) */
+.contact-section {
+  padding: 80px 48px 100px;
+  background: #080808;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.contact-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  margin-top: 34px;
+}
+.contact-item h4 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.82em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 12px;
+}
+.contact-item address,
+.contact-item p {
+  font-style: normal;
+  font-size: 1.02em;
+  font-weight: 300;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.85);
+  word-break: keep-all;
+}
+.contact-item a { color: inherit; }
+.contact-item a:hover { color: #e8380d; }
+.contact-copy {
+  margin-top: 56px;
+  font-size: 0.85em;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+@media (max-width: 900px) {
+  .stat-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .about-body { padding: 10px 22px 20px; }
+  .about-section { padding: 52px 0; }
+  .about-vision-title { font-size: 2.3em; }
+  .about-lead { font-size: 1.1em; }
+  .contact-section { padding: 60px 22px 80px; }
+}
+
+/* ===== Portfolio 페이지 ===== */
+.portfolio-page {
+  min-height: 100vh;
+  background: #0d0d0d;
+}
+.pf-body {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 70px 48px 120px;
+}
+
+/* 필터 바 */
+.pf-filters {
+  margin-bottom: 48px;
+}
+.pf-search {
+  margin-bottom: 28px;
+}
+.pf-search input {
+  width: 100%;
+  max-width: 420px;
+  padding: 14px 18px;
+  font-size: 0.95em;
+  color: #fff;
+  background: #181818;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.25s;
+}
+.pf-search input::placeholder { color: rgba(255, 255, 255, 0.4); }
+.pf-search input:focus { border-color: #e8380d; }
+
+.pf-filter-row {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.pf-filter-label {
+  flex: 0 0 48px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  padding-top: 6px;
+}
+.pf-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pf-btn {
+  padding: 8px 16px;
+  font-size: 0.88em;
+  color: rgba(255, 255, 255, 0.65);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.pf-btn:hover { color: #fff; border-color: rgba(255, 255, 255, 0.5); }
+.pf-btn.on {
+  color: #fff;
+  background: #e8380d;
+  border-color: #e8380d;
+}
+
+/* 그리드 (가로 4개 기준) */
+.pf-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.pf-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  color: inherit;
+}
+.pf-logo {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 10px;
+}
+.pf-logo img {
+  max-width: 96%;
+  max-height: 98%;
+  object-fit: contain;
+}
+/* SVG 로고: 여백 없는 벡터라 래스터 로고와 시각적 크기를 맞춤 */
+.pf-logo--svg img {
+  max-width: 62%;
+  max-height: 52%;
+}
+/* 글로벌푸드테크 로고만 조금 더 크게 */
+.pf-logo--globalfoodtech img {
+  max-width: 78%;
+  max-height: 66%;
+}
+/* 로고 이미지가 없는 회사: 회사명을 텍스트로 표시 */
+.pf-logo--text span {
+  font-weight: 600;
+  font-size: 1.05em;
+  color: #222;
+  text-align: center;
+  word-break: keep-all;
+  line-height: 1.3;
+}
+/* 호버 오버레이: 회사명 + 주요 사업분야 (KB인베스트먼트 스타일) */
+.pf-over {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px;
+  text-align: center;
+  background: rgba(20, 20, 20, 0.92);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.pf-card:hover .pf-over { opacity: 1; }
+.pf-name {
+  font-size: 1.02em;
+  font-weight: 600;
+  color: #fff;
+  word-break: keep-all;
+}
+.pf-desc {
+  font-size: 0.85em;
+  font-weight: 300;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.8);
+  word-break: keep-all;
+}
+.pf-sector {
+  margin-top: 4px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.7em;
+  letter-spacing: 0.06em;
+  color: #ff7a5c;
+}
+.pf-card--nolink { cursor: default; }
+
+.pf-empty {
+  display: none;
+  padding: 80px 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ===== 반응형 (KIP와 동일한 브레이크포인트) ===== */
+@media (max-width: 1024px) {
+  .member-grid { grid-template-columns: repeat(3, 1fr); }
+  .pf-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 700px) {
+  .team-hero { min-height: 320px; padding: 110px 22px 40px; }
+  .team-body { padding: 56px 22px 80px; }
+  .team-head h2 { font-size: 2.4em; }
+  .member-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .pf-body { padding: 48px 22px 80px; }
+  .pf-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .pf-filter-row { flex-direction: column; gap: 10px; }
+  /* 터치기기엔 hover가 없으므로 회사명을 카드 하단에 항상 표시.
+     로고는 그대로 보이고 이름만 하단 스크림 위에 노출한다. */
+  .pf-over {
+    opacity: 1;
+    justify-content: flex-end;
+    gap: 0;
+    padding: 0 6px 7px;
+    background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.74) 0%,
+      rgba(0, 0, 0, 0.36) 24%,
+      rgba(0, 0, 0, 0) 50%);
+  }
+  .pf-over .pf-desc,
+  .pf-over .pf-sector { display: none; }
+  .pf-name {
+    font-size: 0.72em;
+    line-height: 1.2;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  }
+  /* 모달: 세로로 쌓기(사진 위, 정보 아래) */
+  .member-modal-body { flex-direction: column; }
+  .member-modal-body .m-left { flex: none; width: 100%; }
+  .member-modal-body .m-photo { min-height: 0; height: 280px; }
+  .member-modal-body .m-right { padding: 32px 26px; max-height: none; overflow: visible; }
+  /* 모달 전체(사진+학력·경력)를 스크롤 가능하게 — 내용이 길면 아래로 내려서 볼 수 있음 */
+  .member-modal-inner { max-height: 90vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  /* 스크롤해도 닫기 버튼은 화면 우측 상단에 항상 고정 */
+  .member-modal-close { position: fixed; top: 30px; right: 30px; z-index: 3; }
+}
+
+/* ===== 반응형 (KIP와 동일한 브레이크포인트) ===== */
+@media (max-width: 1024px) {
+  /* 세로 스택 시 첫 항목 라벨이 상단 고정 헤더에 가리지 않도록 위 여백 확보 */
+  .fullmenu { flex-direction: column; padding-top: 84px; }
+  .fullmenu-item + .fullmenu-item {
+    border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+}
+
+@media (max-width: 768px) {
+  .site-header { padding: 24px 24px; }
+  /* 로고를 스프라이트째 62%로 축소(폭도 줄여 겹침 방지) — 모바일에서 전체가 보이도록 */
+  .logo { width: 143px; height: 12px; }
+  .logo a { background-size: 310px 310px; }
+  /* 우측 상단 컨트롤(언어 토글·햄버거) 전체 축소 */
+  .header-right { gap: 18px; }
+  .lang { font-size: 11px; gap: 9px; }
+  .btn-menu { transform: scale(0.82); transform-origin: right center; }
+  /* 메뉴 상단 여백도 작아진 헤더에 맞춰 축소 */
+  .fullmenu { padding-top: 64px; }
+  .hero-title { font-size: 3rem; white-space: normal; word-break: keep-all; }
+  .hero-subtitle { font-size: 1.2rem; }
+  /* 한글이 음절 중간에서 잘리지 않고 띄어쓰기(어절) 단위로 줄바꿈되도록 */
+  h1, h2, h3, h4, h5, h6, p, li, dt, dd, span, a, address {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 2.2rem; white-space: normal; }
+  .hero-subtitle { font-size: 1rem; word-break: keep-all; }
+  .fullmenu-label { font-size: 22px; }
+  /* 아주 좁은 화면에서 로고와 우측 컨트롤이 겹치지 않도록 더 축소(52%) */
+  .site-header { padding: 18px 16px; }
+  .logo { width: 120px; height: 10px; }
+  .logo a { background-size: 260px 260px; }
+  .header-right { gap: 12px; }
+  .lang { font-size: 10px; gap: 7px; }
+  .lang li + li { padding-left: 7px; }
+  .btn-menu { transform: scale(0.72); transform-origin: right center; }
+  /* 메뉴 상단 여백도 작아진 헤더에 맞춰 더 축소 */
+  .fullmenu { padding-top: 48px; }
+}

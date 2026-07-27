@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Portfolio | CRIT Ventures</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-lang="en">
+
+<!-- 헤더와 전체화면 메뉴는 js/main.js가 주입 -->
+
+<main class="portfolio-page">
+  <header class="team-hero" style="background-image:url('../assets/img/change2.jpg'); background-position:center 68%">
+    <div class="team-hero-dim"></div>
+    <div class="team-head">
+      <h2>Portfolio</h2>
+      <p><strong id="pfCount">0</strong> portfolio companies CRIT Ventures backs.</p>
+    </div>
+  </header>
+
+  <div class="pf-body">
+    <!-- Filters -->
+    <div class="pf-filters">
+      <div class="pf-search">
+        <input type="search" id="pfSearch" placeholder="Search company" autocomplete="off">
+      </div>
+
+      <div class="pf-filter-row">
+        <div class="pf-btns">
+          <button type="button" class="pf-btn on" data-view="all">All</button>
+          <button type="button" class="pf-btn" data-view="highlights">Highlights</button>
+        </div>
+      </div>
+
+      <div class="pf-filter-row">
+        <span class="pf-filter-label">Sector</span>
+        <div class="pf-btns">
+          <button type="button" class="pf-btn on" data-sector="all">All</button>
+          <button type="button" class="pf-btn" data-sector="game">Game</button>
+          <button type="button" class="pf-btn" data-sector="content">Content·Media</button>
+          <button type="button" class="pf-btn" data-sector="ai">AI·Deep Tech</button>
+          <button type="button" class="pf-btn" data-sector="commerce">Commerce·Platform</button>
+          <button type="button" class="pf-btn" data-sector="healthcare">Healthcare</button>
+          <button type="button" class="pf-btn" data-sector="web3">Web3·Blockchain</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="pf-grid" id="pfGrid"></div>
+    <p class="pf-empty" id="pfEmpty">No results found.</p>
+  </div>
+</main>
+
+<script src="../js/portfolio-data.js"></script>
+<script src="../js/portfolio.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

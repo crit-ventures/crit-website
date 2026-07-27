@@ -1,0 +1,14 @@
+# OS 생성 파일
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# 편집기/임시 파일
+*.tmp
+*~
+.vscode/
+
+# 배포에 불필요한 원본/백업 (실수로 폴더 안에 들어와도 제외)
+_배포제외_백업/
+**/_prev/
+**/orig/_prev/

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>회사 소개 | 크릿벤처스</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-lang="ko">
+
+<!-- 헤더와 전체화면 메뉴는 js/main.js가 주입 -->
+
+<main class="about-page">
+  <header class="team-hero" style="background-image:url('assets/img/slide1.jpg')">
+    <div class="team-hero-dim"></div>
+    <div class="team-head">
+      <h2>About</h2>
+    </div>
+  </header>
+
+  <div class="about-body">
+
+    <!-- 회사 비전 -->
+    <section class="about-section">
+      <span class="about-eyebrow">Vision</span>
+      <h3 class="about-vision-title">The Road Not Taken</h3>
+      <p class="about-vision-sub">크릿벤처스는 아무도 가지 않는 길을 가는 창업팀과 함께합니다.</p>
+    </section>
+
+    <!-- 회사 소개 -->
+    <section class="about-section">
+      <span class="about-eyebrow">About Us</span>
+      <h3 class="about-title">회사 소개</h3>
+      <p class="about-lead">크릿벤처스는 2020년 08월 설립된 이후 AUM 3,400억 원을 달성하며 빠르게 성장하고 있는 VC입니다.<br>K-컬처, AI/딥테크 스타트업의 시리즈 Pre-A ~ 시리즈 B 라운드에 주로 투자합니다.</p>
+
+      <!-- 수치 (화면에 보일 때 카운트업) -->
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-value">
+            <span class="stat-num" data-target="3400">0</span><span class="stat-plus">+</span>
+            <span class="stat-unit">억 원</span>
+          </div>
+          <div class="stat-label">운용자산 (AUM)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">
+            <span class="stat-num" id="statCompanies" data-target="129">0</span><span class="stat-plus">+</span>
+            <span class="stat-unit">개사</span>
+          </div>
+          <div class="stat-label">투자 기업</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">
+            <span class="stat-num" data-target="9">0</span>
+            <span class="stat-unit">개</span>
+          </div>
+          <div class="stat-label">운용 펀드</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Contact -->
+  <section class="contact-section">
+    <div class="contact-inner">
+      <span class="about-eyebrow">Contact</span>
+      <h3 class="about-title">오시는 길 &amp; 연락처</h3>
+
+      <div class="contact-grid">
+        <div class="contact-item">
+          <h4>Location</h4>
+          <address>
+            서울특별시 강남구 언주로93길 10, 4층<br>
+            4F, 10 Eonju-ro 93-gil, Gangnam-gu, Seoul
+          </address>
+        </div>
+        <div class="contact-item">
+          <h4>Contacts</h4>
+          <p>
+            Tel. <a href="tel:0255581940">02-558-1940</a><br>
+            Fax. 02-558-1941<br>
+            Mail. <a href="mailto:contact@crit.vc">contact@crit.vc</a>
+          </p>
+        </div>
+      </div>
+
+      <p class="contact-copy">Copyright &copy; CRIT VENTURES Inc. All Rights Reserved.</p>
+    </div>
+  </section>
+</main>
+
+<script src="js/portfolio-data.js"></script>
+<script src="js/about.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
