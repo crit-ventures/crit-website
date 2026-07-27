@@ -857,12 +857,14 @@ body.modal-open { overflow: hidden; }
   margin-bottom: 48px;
 }
 .pf-search {
+  position: relative;
+  max-width: 420px;
   margin-bottom: 28px;
 }
 .pf-search input {
   width: 100%;
   max-width: 420px;
-  padding: 14px 18px;
+  padding: 14px 44px 14px 18px;
   font-size: 0.95em;
   color: #fff;
   background: #181818;
@@ -873,6 +875,37 @@ body.modal-open { overflow: hidden; }
 }
 .pf-search input::placeholder { color: rgba(255, 255, 255, 0.4); }
 .pf-search input:focus { border-color: #e8380d; }
+/* 브라우저 기본 검색 지우기 버튼 숨김(커스텀 버튼 사용) */
+.pf-search input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+/* 커스텀 지우기(×) 버튼 — 입력값이 있을 때만 표시 */
+.pf-clear {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  display: none;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.pf-clear.on { display: block; }
+.pf-clear::before,
+.pf-clear::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 2px;
+}
+.pf-clear::before { transform: translate(-50%, -50%) rotate(45deg); }
+.pf-clear::after { transform: translate(-50%, -50%) rotate(-45deg); }
+.pf-clear:hover::before,
+.pf-clear:hover::after { background: #fff; }
 
 .pf-filter-row {
   display: flex;
@@ -1059,13 +1092,13 @@ body.modal-open { overflow: hidden; }
 
 @media (max-width: 768px) {
   .site-header { padding: 24px 24px; }
-  /* 로고를 스프라이트째 62%로 축소(폭도 줄여 겹침 방지) — 모바일에서 전체가 보이도록 */
-  .logo { width: 143px; height: 12px; }
-  .logo a { background-size: 310px 310px; }
+  /* 로고를 스프라이트째 68%로 축소(폭도 줄여 겹침 방지) — 모바일에서 전체가 보이도록 */
+  .logo { width: 156px; height: 13px; }
+  .logo a { background-size: 340px 340px; }
   /* 우측 상단 컨트롤(언어 토글·햄버거) 전체 축소 */
-  .header-right { gap: 18px; }
-  .lang { font-size: 11px; gap: 9px; }
-  .btn-menu { transform: scale(0.82); transform-origin: right center; }
+  .header-right { gap: 20px; }
+  .lang { font-size: 12px; gap: 10px; }
+  .btn-menu { transform: scale(0.88); transform-origin: right center; }
   /* 메뉴 상단 여백도 작아진 헤더에 맞춰 축소 */
   .fullmenu { padding-top: 64px; }
   .hero-title { font-size: 3rem; white-space: normal; word-break: keep-all; }
@@ -1081,14 +1114,14 @@ body.modal-open { overflow: hidden; }
   .hero-title { font-size: 2.2rem; white-space: normal; }
   .hero-subtitle { font-size: 1rem; word-break: keep-all; }
   .fullmenu-label { font-size: 22px; }
-  /* 아주 좁은 화면에서 로고와 우측 컨트롤이 겹치지 않도록 더 축소(52%) */
+  /* 아주 좁은 화면에서 로고와 우측 컨트롤이 겹치지 않도록 더 축소(60%) */
   .site-header { padding: 18px 16px; }
-  .logo { width: 120px; height: 10px; }
-  .logo a { background-size: 260px 260px; }
-  .header-right { gap: 12px; }
-  .lang { font-size: 10px; gap: 7px; }
-  .lang li + li { padding-left: 7px; }
-  .btn-menu { transform: scale(0.72); transform-origin: right center; }
+  .logo { width: 138px; height: 12px; }
+  .logo a { background-size: 300px 300px; }
+  .header-right { gap: 14px; }
+  .lang { font-size: 11px; gap: 8px; }
+  .lang li + li { padding-left: 8px; }
+  .btn-menu { transform: scale(0.8); transform-origin: right center; }
   /* 메뉴 상단 여백도 작아진 헤더에 맞춰 더 축소 */
   .fullmenu { padding-top: 48px; }
 }

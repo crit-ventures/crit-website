@@ -73,10 +73,24 @@
   }
 
   var search = document.getElementById("pfSearch");
+  var clearBtn = document.getElementById("pfClear");
+  function syncClear() {
+    if (clearBtn) clearBtn.classList.toggle("on", !!search.value);
+  }
   if (search) {
     search.addEventListener("input", function () {
       state.q = search.value.trim().toLowerCase();
+      syncClear();
       render();
+    });
+  }
+  if (clearBtn) {
+    clearBtn.addEventListener("click", function () {
+      search.value = "";
+      state.q = "";
+      syncClear();
+      render();
+      search.focus();
     });
   }
 
