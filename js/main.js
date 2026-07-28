@@ -15,6 +15,21 @@
 
   var hasHero = !!document.querySelector(".hero");
 
+  // PC 전용 상단 네비게이션(모바일에선 CSS로 숨김) — 현재 페이지는 .on 표시
+  var navItems = [
+    { href: "about.html", label: "About" },
+    { href: "team.html", label: "Team" },
+    { href: "fund.html", label: "Fund" },
+    { href: "portfolio.html", label: "Portfolio" }
+  ];
+  var navHTML = '<nav class="header-nav">';
+  navItems.forEach(function (n) {
+    navHTML +=
+      '<a class="header-nav-link' + (file === n.href ? " on" : "") + '" href="' + n.href + '">' +
+      n.label + "</a>";
+  });
+  navHTML += "</nav>";
+
   var headerHTML =
     '<header class="site-header' + (hasHero ? "" : " solid") + '">' +
     '  <h1 class="logo"><a href="' + homeHref + '" title="CRIT Ventures">CRIT VENTURES</a></h1>' +
@@ -23,6 +38,7 @@
     '      <li class="' + (lang === "ko" ? "on" : "") + '"><a href="' + korHref + '">KOR</a></li>' +
     '      <li class="' + (lang === "en" ? "on" : "") + '"><a href="' + engHref + '">ENG</a></li>' +
     "    </ul>" +
+    navHTML +
     '    <button type="button" class="btn-menu" aria-label="' + (lang === "en" ? "Open menu" : "메뉴 열기") + '" aria-expanded="false">' +
     "      <span></span><span></span><span></span>" +
     "    </button>" +

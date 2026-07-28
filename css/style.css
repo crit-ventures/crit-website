@@ -100,6 +100,39 @@ ul, li { list-style: none; }
   background: rgba(255, 255, 255, 0.35);
 }
 
+/* PC 전용 상단 네비게이션 (KOR/ENG와 햄버거 사이) — 모바일에서는 숨김 */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+.header-nav-link {
+  position: relative;
+  padding: 3px 0;
+  color: rgba(255, 255, 255, 0.72);
+  transition: color 0.25s;
+}
+.header-nav-link:hover,
+.header-nav-link.on {
+  color: #fff;
+}
+.header-nav-link.on::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 2px;
+  background: #e8380d;
+}
+/* 좁은 화면(태블릿·모바일)에서는 네비 숨기고 햄버거만 사용 */
+@media (max-width: 900px) {
+  .header-nav { display: none; }
+}
+
 /* 햄버거 메뉴 버튼 (줄 3개) */
 .btn-menu {
   position: relative;
