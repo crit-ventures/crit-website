@@ -128,8 +128,10 @@ ul, li { list-style: none; }
   height: 2px;
   background: #e8380d;
 }
-/* 좁은 화면(태블릿·모바일)에서는 네비 숨기고 햄버거만 사용 */
-@media (max-width: 900px) {
+/* 전체화면 메뉴가 열리면 네비 숨김 */
+body.menu-open .header-nav { display: none; }
+/* 좁은 화면(태블릿·모바일·폴더블 펼침 등)에서는 네비 숨기고 햄버거만 사용 */
+@media (max-width: 1000px) {
   .header-nav { display: none; }
 }
 
@@ -1070,21 +1072,9 @@ body.modal-open { overflow: hidden; }
   color: rgba(255, 255, 255, 0.5);
 }
 
-/* ===== 반응형 (KIP와 동일한 브레이크포인트) ===== */
-@media (max-width: 1024px) {
-  .member-grid { grid-template-columns: repeat(3, 1fr); }
-  .pf-grid { grid-template-columns: repeat(3, 1fr); }
-}
-@media (max-width: 700px) {
-  .team-hero { min-height: 320px; padding: 110px 22px 40px; }
-  .team-body { padding: 56px 22px 80px; }
-  .team-head h2 { font-size: 2.4em; }
-  .member-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
-  .pf-body { padding: 48px 22px 80px; }
-  .pf-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-  .pf-filter-row { flex-direction: column; gap: 10px; }
-  /* 터치기기엔 hover가 없으므로 회사명을 카드 하단에 항상 표시.
-     로고는 그대로 보이고 이름만 하단 스크림 위에 노출한다. */
+/* 포트폴리오 카드: 1000px 이하(모바일·태블릿·폴더블)에서는 hover 없이도
+   회사명을 카드 하단에 항상 표시. 로고는 그대로 보이고 이름만 스크림 위에 노출. */
+@media (max-width: 1000px) {
   .pf-over {
     opacity: 1;
     justify-content: flex-end;
@@ -1102,6 +1092,21 @@ body.modal-open { overflow: hidden; }
     line-height: 1.2;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
   }
+}
+
+/* ===== 반응형 (KIP와 동일한 브레이크포인트) ===== */
+@media (max-width: 1024px) {
+  .member-grid { grid-template-columns: repeat(3, 1fr); }
+  .pf-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 700px) {
+  .team-hero { min-height: 320px; padding: 110px 22px 40px; }
+  .team-body { padding: 56px 22px 80px; }
+  .team-head h2 { font-size: 2.4em; }
+  .member-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .pf-body { padding: 48px 22px 80px; }
+  .pf-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .pf-filter-row { flex-direction: column; gap: 10px; }
   /* 모달: 세로로 쌓기(사진 위, 정보 아래) */
   .member-modal-body { flex-direction: column; }
   .member-modal-body .m-left { flex: none; width: 100%; }

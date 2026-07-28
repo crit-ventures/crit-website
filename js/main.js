@@ -15,20 +15,24 @@
 
   var hasHero = !!document.querySelector(".hero");
 
-  // PC 전용 상단 네비게이션(모바일에선 CSS로 숨김) — 현재 페이지는 .on 표시
-  var navItems = [
-    { href: "about.html", label: "About" },
-    { href: "team.html", label: "Team" },
-    { href: "fund.html", label: "Fund" },
-    { href: "portfolio.html", label: "Portfolio" }
-  ];
-  var navHTML = '<nav class="header-nav">';
-  navItems.forEach(function (n) {
-    navHTML +=
-      '<a class="header-nav-link' + (file === n.href ? " on" : "") + '" href="' + n.href + '">' +
-      n.label + "</a>";
-  });
-  navHTML += "</nav>";
+  // PC 전용 상단 네비게이션(모바일·메뉴 열림 시엔 CSS로 숨김) — 현재 페이지는 .on 표시
+  // 첫 화면(index, 히어로 있음)에는 표시하지 않고 서브페이지에서만 노출
+  var navHTML = "";
+  if (!hasHero) {
+    var navItems = [
+      { href: "about.html", label: "About" },
+      { href: "team.html", label: "Team" },
+      { href: "fund.html", label: "Fund" },
+      { href: "portfolio.html", label: "Portfolio" }
+    ];
+    navHTML = '<nav class="header-nav">';
+    navItems.forEach(function (n) {
+      navHTML +=
+        '<a class="header-nav-link' + (file === n.href ? " on" : "") + '" href="' + n.href + '">' +
+        n.label + "</a>";
+    });
+    navHTML += "</nav>";
+  }
 
   var headerHTML =
     '<header class="site-header' + (hasHero ? "" : " solid") + '">' +
