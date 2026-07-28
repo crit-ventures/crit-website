@@ -1072,7 +1072,7 @@ body.modal-open { overflow: hidden; }
   /* 모달: 세로로 쌓기(사진 위, 정보 아래) */
   .member-modal-body { flex-direction: column; }
   .member-modal-body .m-left { flex: none; width: 100%; }
-  .member-modal-body .m-photo { min-height: 0; height: 420px; object-position: top center; }
+  .member-modal-body .m-photo { min-height: 0; height: 400px; object-position: top center; }
   .member-modal-body .m-right { padding: 32px 26px; max-height: none; overflow: visible; }
   /* 모달 전체(사진+학력·경력)를 스크롤 가능하게 — 내용이 길면 아래로 내려서 볼 수 있음 */
   .member-modal-inner { max-height: 90vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
