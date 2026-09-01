@@ -25,6 +25,8 @@ window.PORTFOLIO_SECTORS_EN = {
 };
 
 window.PORTFOLIO = [
+    { n: "엑스텐스튜디오", ne: "Exten Studio", u: "https://extenstudio.com/", r: "kr", s: "content", d: "웹툰 제작·유통사", de: "Webtoon production & distribution", a: "엑스텐 exten extenstudio" },
+    { n: "한국디지털플랫폼(파나스)", ne: "Panas", u: "https://panas.art/?tabs=oc-game", r: "kr", s: "game", d: "자체 TCG IP '스태커배틀'", de: "In-house TCG IP 'Stacker Battle'", a: "파나스 panas 스태커배틀 한국디지털플랫폼" },
     { n: "하이퍼네트웍스", ne: "Hypernetworks", u: "https://hypernetworks.co.kr/", r: "kr", g: "portfolio_110", s: "content", d: "TikTok LIVE 크리에이터 에이전시", de: "TikTok LIVE creator agency", a: "hypernetworks 하이퍼네트웍스" },
     { n: "YUZUCO", u: "https://www.theyuzu.co/", r: "kr", g: "YUZUCO.svg", s: "commerce", d: "유자 기반 식음료 제조·유통", de: "Yuzu-based food & beverage maker", a: "유주코 유자 theyuzu" },
     { n: "벙커키즈", ne: "Bunkerkids", u: "", r: "kr", g: "portfolio_109", s: "content", d: "AI 캐릭터 채팅 기반 여성향 Live Fiction 플랫폼 'WHIF'", de: "AI character-chat female-oriented live-fiction platform 'WHIF'", a: "whif 벙커키즈 bunkerkids 위프" },
