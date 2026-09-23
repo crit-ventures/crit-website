@@ -9,6 +9,27 @@
     companyEl.setAttribute("data-target", window.PORTFOLIO.length);
   }
 
+  // 운용 펀드 수: fund.html의 .fund-card 개수를 세어 자동 반영
+  // (fund 탭에 펀드를 추가/삭제하면 About의 숫자도 그대로 따라감)
+  var fundEl = document.getElementById("statFunds");
+  if (fundEl && window.fetch) {
+    fetch("fund.html")
+      .then(function (r) { return r.ok ? r.text() : null; })
+      .then(function (html) {
+        if (!html) return;
+        var doc = new DOMParser().parseFromString(html, "text/html");
+        var n = doc.querySelectorAll(".fund-card").length;
+        if (n > 0) {
+          fundEl.setAttribute("data-target", n);
+          // 이미 카운트 애니메이션이 끝난 뒤 값이 도착하면 즉시 반영
+          if (fundEl.dataset.done) {
+            fundEl.textContent = n.toLocaleString("ko-KR");
+          }
+        }
+      })
+      .catch(function () { /* file:// 등 fetch 불가 시 하드코딩 값(폴백) 사용 */ });
+  }
+
   function animate(el) {
     var target = parseInt(el.getAttribute("data-target"), 10) || 0;
     var duration = 1600;
