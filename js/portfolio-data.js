@@ -32,7 +32,7 @@ window.PORTFOLIO = [
     { n: "벙커키즈", ne: "Bunkerkids", u: "", r: "kr", g: "portfolio_109", s: "content", d: "AI 캐릭터 채팅 기반 여성향 Live Fiction 플랫폼 'WHIF'", de: "AI character-chat female-oriented live-fiction platform 'WHIF'", a: "whif 벙커키즈 bunkerkids 위프" },
     { n: "Yoyogi Animation Group Inc.", ne: "Yoyogi Animation Group", u: "", r: "us", g: "portfolio_108", s: "content", d: "일본 IP 엔터테인먼트", de: "Japan IP entertainment", a: "요요기 yoyogi animation 요아니 yoani 우타이테" },
     { n: "스콘", ne: "SCON", u: "https://www.scon.company/", r: "kr", g: "portfolio_91", s: "content", d: "버추얼 IP 엔터테인먼트(버추얼 아이돌)", de: "Virtual IP entertainment studio", a: "미츄 meechu" },
-    { n: "엑스와이지", ne: "XYZ", u: "https://xyzcorp.io/", r: "kr", g: "portfolio_85", s: "ai", d: "AI 서비스로봇·바리스타 로봇 개발사", de: "AI service robotics maker", a: "xyz", hl: 1, ho: 4 },
+    { n: "엑스와이지", ne: "XYZ", u: "https://xyzcorp.ai/", r: "kr", g: "portfolio_85", s: "ai", d: "AI 서비스로봇·바리스타 로봇 개발사", de: "AI service robotics maker", a: "xyz", hl: 1, ho: 4 },
     { n: "But Beautiful", ne: "But Beautiful", u: "https://www.butbeautiful.co/", r: "us", g: "But Beautiful.jpg", s: "ai", d: "AI 네이티브 소셜 앱 '츄룹'", de: "AI-native social app 'Truloop'", a: "츄룹 truloop" },
     { n: "유비파이", ne: "UVify", u: "https://www.uvify.com/", r: "kr", g: "유비파이.png", s: "ai", d: "군집비행·라이트쇼 자율비행 드론 제조사", de: "Autonomous & swarm light-show drone maker", hl: 1, ho: 2 },
     { n: "Ologie", ne: "Ologie", u: "", r: "us", g: "ologie.png", s: "healthcare", d: "뉴욕 기반 K-뷰티 메디컬 미용 플랫폼", de: "NYC-based K-beauty medical aesthetics platform", a: "올로지" },
