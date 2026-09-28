@@ -39,7 +39,7 @@ window.PORTFOLIO = [
     { n: "Sopo", ne: "Sopo", u: "https://eatsopo.com/", r: "us", g: "portfolio_97", s: "commerce", d: "뉴욕 기반 한식 패스트캐주얼 브랜드", de: "NYC Korean fast-casual brand", a: "kkinee 끼니 소포" },
     { n: "Early Health", ne: "Early Health", u: "https://www.earlyhealth.com/", r: "us", g: "portfolio_99", s: "healthcare", d: "가정용 소변검사 기반 질병 조기진단", de: "At-home urine testing for early disease detection", a: "얼리헬스" },
     { n: "Noah's Farm", ne: "Noah's Farm", u: "https://noahs-farm.xyz/", r: "us", g: "noah's farm.jpg", s: "ai", d: "AI 기반 향료 분자·정밀 향미 R&D", de: "AI-driven flavor molecule R&D" },
-    { n: "Artue", u: "https://artue.io/ko", r: "kr", g: "portfolio_107", s: "web3", d: "AI 감성 큐레이션 기반 아트 플랫폼·온체인 RWA", de: "AI emotional-curation art platform & on-chain RWA", a: "아르튜 art" },
+    { n: "Artue", u: "https://artue.io/ko", r: "kr", g: "portfolio_107", s: "content", d: "AI 기반 아트 디스커버리 플랫폼", de: "AI-powered art discovery platform", a: "아르튜 art 아르투" },
     { n: "모비콘텐츠테크", ne: "Mobi Contents Tech", u: "https://en.mobicontentstech.com/", r: "kr", g: "portfolio_89", s: "commerce", d: "글로벌 K팝 팬덤 IP커머스 플랫폼", de: "Global K-pop fandom IP-commerce platform", a: "코코다이브 cokodive mobicontents" },
     { n: "Deep Into The", ne: "Deep Into The", u: "https://www.deepintothe.xyz/", r: "us", g: "portfolio_98", s: "ai", d: "IP 홀더용 AI 페르소나 엔진", de: "EQ-based AI persona engine for IP holders", a: "deepintothe 딥인투더" },
     { n: "펩", ne: "Pep", u: "", r: "kr", g: "펩.jpg", s: "game", d: "하이브리드 캐주얼 게임 개발사", de: "Hybrid casual game studio" },
