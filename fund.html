@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html><head><meta charset="utf-8">
-<!-- 예전 주소(.html) 호환용: 새 주소로 자동 이동 -->
+<!-- 예전 주소(.html) 호환용: 새 주소로 자동 이동 (로컬 파일로 열 때는 폴더 대신 index.html로 이동) -->
 <title>Redirecting…</title>
 <meta name="robots" content="noindex">
 <link rel="canonical" href="fund/">
+<script>location.replace("fund/" + (location.protocol === "file:" ? "index.html" : "") + location.hash);</script>
 <meta http-equiv="refresh" content="0; url=fund/">
-<script>location.replace("fund/"+location.hash);</script>
-</head><body><a href="fund/">fund/</a></body></html>
+</head><body><a href="fund/index.html">fund/</a></body></html>
