@@ -9,11 +9,11 @@
     companyEl.setAttribute("data-target", window.PORTFOLIO.length);
   }
 
-  // 운용 펀드 수: fund.html의 .fund-card 개수를 세어 자동 반영
+  // 운용 펀드 수: fund 페이지(../fund/)의 .fund-card 개수를 세어 자동 반영
   // (fund 탭에 펀드를 추가/삭제하면 About의 숫자도 그대로 따라감)
   var fundEl = document.getElementById("statFunds");
   if (fundEl && window.fetch) {
-    fetch("fund.html")
+    fetch("../fund/")
       .then(function (r) { return r.ok ? r.text() : null; })
       .then(function (html) {
         if (!html) return;

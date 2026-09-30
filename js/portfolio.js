@@ -5,7 +5,8 @@
 
   var lang = document.body.getAttribute("data-lang") === "en" ? "en" : "ko";
   var sectors = lang === "en" ? window.PORTFOLIO_SECTORS_EN : window.PORTFOLIO_SECTORS;
-  var assetPrefix = lang === "en" ? "../" : "";
+  // 사이트 루트 = 이 스크립트(js/portfolio.js)의 위치 기준 (ko: /portfolio/, en: /en/portfolio/ 어디서든 맞음)
+  var assetPrefix = document.currentScript.src.replace(/js\/portfolio\.js(?:[?#].*)?$/, "");
 
   var state = { q: "", view: "all", sector: "all" };
 

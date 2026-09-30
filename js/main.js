@@ -1,17 +1,29 @@
 // ===== 공통 헤더 / 전체화면 메뉴 주입 (언어 인식형) =====
-// 한국어 페이지는 루트(/), 영어 페이지는 /en/ 에 둔다.
+// 한국어 페이지는 /about/ 처럼 루트 아래 폴더, 영어 페이지는 /en/about/ 에 둔다.
 // body[data-lang]="ko|en" 으로 언어를 구분하고 그에 맞게
 // 자산 경로와 언어 전환 링크를 생성한다.
 (function () {
   var lang = document.body.getAttribute("data-lang") === "en" ? "en" : "ko";
-  var assetBase = lang === "en" ? "../assets/" : "assets/";
-  var homeHref = "index.html"; // 폴더 내 상대 경로 (ko: /index.html, en: /en/index.html)
 
-  // 현재 파일명 → 언어 전환 시 같은 페이지로 이동
-  var file = location.pathname.split("/").pop();
-  if (!file) file = "index.html";
-  var korHref = (lang === "en" ? "../" : "") + file;
-  var engHref = (lang === "en" ? "" : "en/") + file;
+  // 사이트 루트 = 이 스크립트(js/main.js)의 위치 기준 → 페이지가 몇 단계 폴더 안에 있어도 경로가 맞음
+  var ROOT = document.currentScript.src.replace(/js\/main\.js(?:[?#].*)?$/, "");
+  var isFile = location.protocol === "file:";
+  // 폴더 주소(about/)는 서버에선 about/index.html을 보여주지만
+  // 내 컴퓨터에서 파일로 열 때(file://)는 폴더 목록이 뜨므로 index.html을 붙여준다
+  function url(p) {
+    var u = ROOT + p;
+    return isFile && /\/$/.test(u) ? u + "index.html" : u;
+  }
+  var assetBase = ROOT + "assets/";
+  var langBase = lang === "en" ? "en/" : "";
+  var homeHref = url(langBase);
+
+  // 현재 페이지(about/team/fund/portfolio, 홈은 "") → 메뉴 표시·언어 전환 시 같은 페이지로 이동
+  var rel = location.href.split(/[?#]/)[0];
+  if (rel.indexOf(ROOT) === 0) rel = rel.slice(ROOT.length);
+  var page = rel.replace(/^en\//, "").replace(/index\.html$/, "").replace(/\/$/, "");
+  var korHref = url(page ? page + "/" : "");
+  var engHref = url("en/" + (page ? page + "/" : ""));
 
   var hasHero = !!document.querySelector(".hero");
 
@@ -20,15 +32,15 @@
   var navHTML = "";
   if (!hasHero) {
     var navItems = [
-      { href: "about.html", label: "About" },
-      { href: "team.html", label: "Team" },
-      { href: "fund.html", label: "Fund" },
-      { href: "portfolio.html", label: "Portfolio" }
+      { key: "about", label: "About" },
+      { key: "team", label: "Team" },
+      { key: "fund", label: "Fund" },
+      { key: "portfolio", label: "Portfolio" }
     ];
     navHTML = '<nav class="header-nav">';
     navItems.forEach(function (n) {
       navHTML +=
-        '<a class="header-nav-link' + (file === n.href ? " on" : "") + '" href="' + n.href + '">' +
+        '<a class="header-nav-link' + (page === n.key ? " on" : "") + '" href="' + url(langBase + n.key + "/") + '">' +
         n.label + "</a>";
     });
     navHTML += "</nav>";
@@ -50,16 +62,16 @@
     "</header>";
 
   var menuItems = [
-    { href: "about.html", img: "slide1.jpg", label: "About" },
-    { href: "team.html", img: "change1.jpg", label: "Team" },
-    { href: "fund.html", img: "slide3.jpg", label: "Fund" },
-    { href: "portfolio.html", img: "change2.jpg", label: "Portfolio" }
+    { key: "about", img: "slide1.jpg", label: "About" },
+    { key: "team", img: "change1.jpg", label: "Team" },
+    { key: "fund", img: "slide3.jpg", label: "Fund" },
+    { key: "portfolio", img: "change2.jpg", label: "Portfolio" }
   ];
   var menuHTML = '<nav class="fullmenu" aria-hidden="true">';
   menuItems.forEach(function (m) {
     // 항목별 클래스(fm-about 등) — 사진 밝기를 개별 조정하기 위함
     menuHTML +=
-      '<a class="fullmenu-item fm-' + m.label.toLowerCase() + '" href="' + m.href + '">' +
+      '<a class="fullmenu-item fm-' + m.label.toLowerCase() + '" href="' + url(langBase + m.key + "/") + '">' +
       '<img class="fullmenu-bg" src="' + assetBase + "img/" + m.img + '" alt="">' +
       '<span class="fullmenu-label">' + m.label + "</span></a>";
   });
