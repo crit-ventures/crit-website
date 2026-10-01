@@ -455,6 +455,12 @@ body.menu-open .fullmenu-item:nth-child(4) { transition-delay: 0.35s; }
 .member-card:hover .member-photo img {
   transform: scale(1.05);
 }
+/* 모바일·터치 기기: 마우스 호버가 없어 흑백이 풀릴 수 없으므로 처음부터 컬러로 표시 */
+@media (max-width: 768px), (hover: none) {
+  .member-photo .ph-bw {
+    display: none;
+  }
+}
 .member-photo::after {
   content: "+";
   position: absolute;
