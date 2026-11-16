@@ -25,6 +25,10 @@ window.PORTFOLIO_SECTORS_EN = {
 };
 
 window.PORTFOLIO = [
+    { n: "올마이티캠퍼스", ne: "Almighty Campus", u: "https://almightycampus.com", r: "kr", g: "올마이티캠퍼스.svg", s: "ai", d: "AI 관리형 학원 프랜차이즈", de: "AI-powered managed academy franchise", a: "올마이티 almighty campus 서울대쌍둥이 수학학원" },
+    { n: "제이드래곤게임즈", ne: "JDragon Games", u: "https://jdragongames.com", r: "kr", g: "제이드래곤게임즈.png", s: "game", d: "MMORPG 개발사", de: "MMORPG developer", a: "제이드래곤 jdragon j dragon project d 프로젝트d" },
+    { n: "브리즈바이오", ne: "BreezeBio, Inc.", u: "https://breezebio.com", r: "us", g: "브리즈바이오.svg", s: "healthcare", d: "유전자 의약품 전달 플랫폼", de: "Genetic medicine delivery platform", a: "breezebio breeze bio 브리즈 nanogalaxy 나노갤럭시 genedit 젠에딧" },
+    { n: "아이브이웍스", ne: "IVWorks Co., Ltd.", u: "https://www.ivwkr.com", r: "kr", g: "아이브이웍스.png", s: "ai", d: "질화갈륨 에피웨이퍼(GaN Epiwafer) 제조사", de: "GaN epiwafer manufacturer", a: "ivworks 아이브이웍스 gan 질화갈륨 에피웨이퍼 epiwafer" },
     { n: "엑스텐스튜디오", ne: "Exten Studio", u: "https://extenstudio.com/", r: "kr", g: "엑스텐스튜디오.png", s: "content", d: "웹툰 제작·유통사", de: "Webtoon production & distribution", a: "엑스텐 exten extenstudio" },
     { n: "한국디지털플랫폼(파나스)", ne: "Panas", u: "https://panas.art/?tabs=oc-game", r: "kr", g: "한국디지털플랫폼(파나스).png", s: "game", d: "자체 TCG IP '스태커배틀'", de: "In-house TCG IP 'Stacker Battle'", a: "파나스 panas 스태커배틀 한국디지털플랫폼" },
     { n: "하이퍼네트웍스", ne: "Hypernetworks", u: "https://hypernetworks.co.kr/", r: "kr", g: "portfolio_110", s: "content", d: "TikTok LIVE 크리에이터 에이전시", de: "TikTok LIVE creator agency", a: "hypernetworks 하이퍼네트웍스" },
