@@ -62,10 +62,10 @@
     "</header>";
 
   var menuItems = [
-    { key: "about", img: "slide1.jpg", label: "About" },
-    { key: "team", img: "change1.jpg", label: "Team" },
-    { key: "fund", img: "slide3.jpg", label: "Fund" },
-    { key: "portfolio", img: "change2.jpg", label: "Portfolio" }
+    { key: "about", img: "slide3.jpg", label: "About" },
+    { key: "team", img: "slide4.jpg", label: "Team" },
+    { key: "fund", img: "slide1.jpg", label: "Fund" },
+    { key: "portfolio", img: "change1.jpg", label: "Portfolio" }
   ];
   var menuHTML = '<nav class="fullmenu" aria-hidden="true">';
   menuItems.forEach(function (m) {

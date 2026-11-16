@@ -281,6 +281,11 @@ body.menu-open .fullmenu-item:nth-child(4) { transition-delay: 0.35s; }
 .fm-portfolio .fullmenu-bg {
   filter: brightness(0.5);
 }
+/* Team: 사진을 오른쪽으로 옮겨 왼쪽의 그림(액자)이 보이게
+   (첫 번째 값이 가로 위치. 50% = 가운데, 값을 줄일수록 사진 왼쪽 부분이 보임) */
+.fm-team .fullmenu-bg {
+  object-position: 35% center;
+}
 .fullmenu-item:hover .fullmenu-bg {
   filter: brightness(1.5);
   transform: scale(1.05);
@@ -342,6 +347,21 @@ body.menu-open .fullmenu-item:nth-child(4) { transition-delay: 0.35s; }
   padding: 140px 48px 60px;
   background-size: cover;
   background-position: center 30%;
+}
+/* ── About 상단 배경 사진 크기·위치 조정 (국문·영문 공통) ──
+   아래 세 값만 바꾸면 됩니다.
+   --about-bg-size : 사진 크기. cover = 배너에 꽉 차게(기본)
+                     가로로도 옮기려면 사진이 배너보다 넓어야 해서 140% auto, 160% auto 처럼 키워야 함
+                     (너무 작게 하면 배너 아래쪽에 빈 공간이 생길 수 있음)
+   --about-bg-x    : 가로 위치. 0% = 사진 왼쪽 끝, 50% = 가운데, 100% = 오른쪽 끝
+   --about-bg-y    : 세로 위치. 0% = 사진 맨 위, 50% = 가운데, 100% = 맨 아래
+   모바일(화면 700px 이하)은 아래쪽 @media (max-width: 700px) 안의 같은 이름 값으로 따로 조정 */
+.about-page .team-hero {
+  --about-bg-size: cover;
+  --about-bg-x: 50%;
+  --about-bg-y: 25%;
+  background-size: var(--about-bg-size);
+  background-position: var(--about-bg-x) var(--about-bg-y);
 }
 .team-hero-dim {
   position: absolute;
@@ -1114,6 +1134,8 @@ body.modal-open { overflow: hidden; }
 }
 @media (max-width: 700px) {
   .team-hero { min-height: 320px; padding: 110px 22px 40px; }
+  /* About 상단 배경 - 모바일용 크기·위치 (설명은 위쪽 .about-page .team-hero 참고) */
+  .about-page .team-hero { --about-bg-size: cover; --about-bg-x: 50%; --about-bg-y: 30%; }
   .team-body { padding: 56px 22px 80px; }
   .team-head h2 { font-size: 2.4em; }
   .member-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
