@@ -1051,6 +1051,17 @@ body.modal-open { overflow: hidden; }
   max-width: 78%;
   max-height: 66%;
 }
+/* 아이브이웍스 로고: 여백 없는 이미지라 칸을 꽉 채워서 조금 축소
+   (파일명이 한글이라 파일명 클래스 대신 이미지 경로로 지정) */
+.pf-logo img[src$="아이브이웍스.png"] {
+  max-width: 74%;
+  max-height: 62%;
+}
+/* 제이드래곤게임즈 로고: 칸 높이를 꽉 채워서 살짝 축소 */
+.pf-logo img[src$="제이드래곤게임즈.png"] {
+  max-width: 82%;
+  max-height: 82%;
+}
 /* 로고 이미지가 없는 회사: 회사명을 텍스트로 표시 */
 .pf-logo--text span {
   font-weight: 600;
