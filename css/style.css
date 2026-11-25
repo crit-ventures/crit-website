@@ -1051,6 +1051,11 @@ body.modal-open { overflow: hidden; }
   max-width: 78%;
   max-height: 66%;
 }
+/* Clink 로고 크기 조정 */
+.pf-logo--clink-logo img {
+  max-width: 72%;
+  max-height: 72%;
+}
 /* 아이브이웍스 로고: 여백 없는 이미지라 칸을 꽉 채워서 조금 축소
    (파일명이 한글이라 파일명 클래스 대신 이미지 경로로 지정) */
 .pf-logo img[src$="아이브이웍스.png"] {
