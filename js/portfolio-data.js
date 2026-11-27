@@ -49,7 +49,7 @@ window.PORTFOLIO = [
     { n: "펩", ne: "Pep", u: "", r: "kr", g: "펩.jpg", s: "game", d: "하이브리드 캐주얼 게임 개발사", de: "Hybrid casual game studio" },
     { n: "피유엠피", ne: "PUMP", u: "https://www.xingxingmobility.com/", r: "kr", g: "portfolio_94", s: "commerce", d: "공유 전동킥보드 도심 모빌리티", de: "Shared e-scooter urban mobility", a: "씽씽 xingxing pump 피유엠피" },
     { n: "위드포인츠", ne: "WithPoints", u: "https://www.withpoints.co.kr/", r: "kr", g: "portfolio_96", s: "ai", d: "3D 비전 기반 모듈형 로봇자동화 솔루션", de: "3D vision-based modular robotics automation" },
-    { n: "Clink", ne: "Clink", u: "", r: "us", g: "CLINK_logo.png", s: "content", d: "한국 웹툰·웹소설 IP의 일본 애니·게임화(기획·중개·제작투자)", de:"Japanese anime and game adaptations of Korean webtoon and web novel IP (planning, brokerage, and production investment)", a: "클링크" },
+    { n: "Clink", ne: "Clink", u: "https://clink-jp.com/", r: "us", g: "CLINK_logo.png", s: "content", d: "한국 웹툰·웹소설 IP의 일본 애니·게임화(기획·중개·제작투자)", de:"Japanese anime and game adaptations of Korean webtoon and web novel IP (planning, brokerage, and production investment)", a: "클링크" },
     { n: "Meet48", u: "https://www.meet48.com/", r: "us", g: "portfolio_106", s: "web3", d: "블록체인 기반 아이돌 육성 플랫폼", de: "Blockchain-based idol nurturing platform", a: "밋48 meet48", hl: 1, ho: 4 },
     { n: "네이처라우드", ne: "Natureloud", u: "https://lyawell.com/", r: "kr", g: "portfolio_87", s: "commerce", d: "'이영애의 건강미식' 건강식품 커머스", de: "Health-food commerce brand", a: "이영애의 건강미식 lyawell" },
     { n: "뉴빌리티", ne: "Neubility", u: "https://www.neubility.ai/", r: "kr", g: "portfolio_84", s: "ai", d: "자율주행 배달로봇·RaaS 개발사", de: "Autonomous delivery robots & RaaS", hl: 1, ho: 3 },
